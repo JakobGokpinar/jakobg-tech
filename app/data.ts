@@ -14,24 +14,19 @@ type WorkExperience = {
   start: string
   end: string
   link: string
+  logo: string
   id: string
 }
 
 type Education = {
   institution: string
+  level: string
   degree: string
   start: string
   end: string
   link: string
   logo: string
   id: string
-}
-
-type BlogPost = {
-  title: string
-  description: string
-  link: string
-  uid: string
 }
 
 type SocialLink = {
@@ -68,6 +63,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     start: '2025',
     end: '',
     link: 'https://tinyurl.com/3h6z3uf2',
+    logo: '/logos/uio.png',
     id: 'work1',
   },
 ]
@@ -75,8 +71,9 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
 export const EDUCATION: Education[] = [
   {
     institution: 'University of Oslo',
+    level: "Bachelor's",
     degree: 'Programming and System Architecture',
-    start: '2022',
+    start: '2023',
     end: '2026',
     link: 'https://www.uio.no/studier/program/informatikk-programmering/',
     logo: '/logos/uio.png',
@@ -108,4 +105,4 @@ export const SOCIAL_LINKS: SocialLink[] = [
 
 ]
 
-export const EMAIL = 'jakobgokpinar@gmail.com'
+export const EMAIL = 'jakobgokpinar02@gmail.com'
