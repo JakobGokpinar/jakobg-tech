@@ -15,7 +15,9 @@ import { AnimatedBackground } from '@/components/ui/animated-background'
 import {
   PROJECTS,
   WORK_EXPERIENCE,
-  BLOG_POSTS,
+  EDUCATION,
+  TECH_STACK,
+  TECH_COLORS,
   EMAIL,
   SOCIAL_LINKS,
 } from './data'
@@ -39,53 +41,17 @@ const TRANSITION_SECTION = {
   duration: 0.3,
 }
 
-type ProjectVideoProps = {
-  src: string
-}
+function TechPill({ name }: { name: string }) {
+  const colorClass =
+    TECH_COLORS[name] ||
+    'bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300'
 
-function ProjectVideo({ src }: ProjectVideoProps) {
   return (
-    <MorphingDialog
-      transition={{
-        type: 'spring',
-        bounce: 0,
-        duration: 0.3,
-      }}
+    <span
+      className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${colorClass}`}
     >
-      <MorphingDialogTrigger>
-        <video
-          src={src}
-          autoPlay
-          loop
-          muted
-          className="aspect-video w-full cursor-zoom-in rounded-xl"
-        />
-      </MorphingDialogTrigger>
-      <MorphingDialogContainer>
-        <MorphingDialogContent className="relative aspect-video rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50">
-          <video
-            src={src}
-            autoPlay
-            loop
-            muted
-            className="aspect-video h-[50vh] w-full rounded-xl md:h-[70vh]"
-          />
-        </MorphingDialogContent>
-        <MorphingDialogClose
-          className="fixed top-6 right-6 h-fit w-fit rounded-full bg-white p-1"
-          variants={{
-            initial: { opacity: 0 },
-            animate: {
-              opacity: 1,
-              transition: { delay: 0.3, duration: 0.1 },
-            },
-            exit: { opacity: 0, transition: { duration: 0 } },
-          }}
-        >
-          <XIcon className="h-5 w-5 text-zinc-500" />
-        </MorphingDialogClose>
-      </MorphingDialogContainer>
-    </MorphingDialog>
+      {name}
+    </span>
   )
 }
 
@@ -135,14 +101,23 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <div className="flex-1">
-          <p className="text-zinc-600 dark:text-zinc-400">
-            Programming and System Architecture student at the University of Oslo. 
-            I build modern applications with clean architecture and solid engineering practices.
-          </p>
+        <div className="flex items-center gap-4">
+          <img
+            src="/jakob.jpg"
+            alt="Jakob"
+            className="h-16 w-16 rounded-full object-cover"
+          />
+          <div>
+            <p className="text-zinc-600 dark:text-zinc-400">
+              CS student at the University of Oslo passionate about building
+              clean, modern applications. Focused on Java, Spring Boot, and
+              full-stack development.
+            </p>
+          </div>
         </div>
       </motion.section>
 
+      {/* Projects */}
       <motion.section
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
@@ -150,28 +125,40 @@ export default function Personal() {
         <h3 className="mb-5 text-lg font-medium">Selected Projects</h3>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {PROJECTS.map((project) => (
-            <div key={project.name} className="space-y-2">
-              <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
-                <ProjectVideo src={project.video} />
-              </div>
-              <div className="px-1">
-                <a
-                  className="font-base group relative inline-block font-[450] text-zinc-900 dark:text-zinc-50"
-                  href={project.link}
-                  target="_blank"
-                >
-                  {project.name}
-                  <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 dark:bg-zinc-50 transition-all duration-200 group-hover:max-w-full"></span>
-                </a>
-                <p className="text-base text-zinc-600 dark:text-zinc-400">
-                  {project.description}
-                </p>
+            <Link
+            key={project.id}
+            href={project.slug}
+            className="group space-y-3"
+          >
+            <div className="relative overflow-hidden rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
+              <img
+                src={project.image}
+                alt={project.name}
+                className="aspect-video w-full rounded-xl object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+              />
+            </div>
+            <div className="px-1">
+              <h4 className="font-[450] text-zinc-900 dark:text-zinc-50">
+                {project.name}
+                <span className="ml-1 inline-block text-zinc-400 transition-transform duration-200 group-hover:translate-x-0.5">
+                  →
+                </span>
+              </h4>
+              <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+                {project.description}
+              </p>
+              <div className="mt-2 flex flex-wrap gap-1.5">
+                {project.technologies.map((tech) => (
+                  <TechPill key={tech} name={tech} />
+                ))}
               </div>
             </div>
+          </Link>
           ))}
         </div>
       </motion.section>
-
+      
+      {/* Work */}
       <motion.section
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
@@ -209,43 +196,67 @@ export default function Personal() {
           ))}
         </div>
       </motion.section>
-
+      
+      {/* Education */ }
       <motion.section
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-3 text-lg font-medium">Blog</h3>
-        <div className="flex flex-col space-y-0">
-          <AnimatedBackground
-            enableHover
-            className="h-full w-full rounded-lg bg-zinc-100 dark:bg-zinc-900/80"
-            transition={{
-              type: 'spring',
-              bounce: 0,
-              duration: 0.2,
-            }}
-          >
-            {BLOG_POSTS.map((post) => (
-              <Link
-                key={post.uid}
-                className="-mx-3 rounded-xl px-3 py-3"
-                href={post.link}
-                data-id={post.uid}
-              >
-                <div className="flex flex-col space-y-1">
-                  <h4 className="font-normal dark:text-zinc-100">
-                    {post.title}
-                  </h4>
-                  <p className="text-zinc-500 dark:text-zinc-400">
-                    {post.description}
+        <h3 className="mb-3 text-lg font-medium">Education</h3>
+        <div className="flex flex-col space-y-2">
+          {EDUCATION.map((edu) => (
+            <a
+              className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
+              href={edu.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              key={edu.id}
+            >
+              <Spotlight
+                className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
+                size={64}
+              />
+              <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-zinc-950">
+                <div className="relative flex w-full flex-row items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <img
+                      src={edu.logo}
+                      alt={edu.institution}
+                      className="h-8 w-8 rounded object-contain"
+                    />
+                    <div>
+                      <h4 className="font-normal dark:text-zinc-100">
+                        {edu.degree}
+                      </h4>
+                      <p className="text-zinc-500 dark:text-zinc-400">
+                        {edu.institution}
+                      </p>
+                    </div>
+                  </div>
+                  <p className="text-sm text-zinc-600 dark:text-zinc-400">
+                    {edu.start} - {edu.end}
                   </p>
                 </div>
-              </Link>
-            ))}
-          </AnimatedBackground>
+              </div>
+            </a>
+          ))}
         </div>
       </motion.section>
-
+      
+      {/* Tech Stack */}
+      <motion.section
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+      >
+        <h3 className="mb-5 text-lg font-medium">Tech Stack</h3>
+        <div className="flex flex-wrap gap-2">
+          {TECH_STACK.map((tech) => (
+            <TechPill key={tech} name={tech} />
+          ))}
+        </div>
+      </motion.section>
+      
+      {/* Connect */}
       <motion.section
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
