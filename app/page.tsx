@@ -88,24 +88,16 @@ export default function Personal() {
       initial="hidden"
       animate="visible"
     >
+      {/* Hero */}
       <motion.section
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <div className="flex items-center gap-4">
-          <img
-            src="/jakob.jpg"
-            alt="Jakob"
-            className="h-16 w-16 rounded-full object-cover"
-          />
-          <div>
-            <p className="text-zinc-600 dark:text-zinc-400">
-              CS student at the University of Oslo passionate about building
-              clean, modern applications. Focused on Java, Spring Boot, and
-              full-stack development.
-            </p>
-          </div>
-        </div>
+        <p className="text-zinc-600 dark:text-zinc-400">
+          CS student at the University of Oslo passionate about building
+          clean, modern applications. Focused on Java, Spring Boot, and
+          full-stack development.
+        </p>
       </motion.section>
 
       {/* Projects */}
