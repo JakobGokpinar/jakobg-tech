@@ -83,7 +83,7 @@ function MagneticSocialLink({
 export default function Personal() {
   return (
     <motion.main
-      className="space-y-18"
+      className="space-y-20"
       variants={VARIANTS_CONTAINER}
       initial="hidden"
       animate="visible"
@@ -108,11 +108,8 @@ export default function Personal() {
         <h3 className="mb-3 text-lg font-medium">Education</h3>
         <div className="flex flex-col space-y-2">
           {EDUCATION.map((edu) => (
-            <a
-              className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
-              href={edu.link}
-              target="_blank"
-              rel="noopener noreferrer"
+            <div
+              className="relative cursor-pointer overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
               key={edu.id}
             >
               <Spotlight
@@ -141,7 +138,7 @@ export default function Personal() {
                   </p>
                 </div>
               </div>
-            </a>
+            </div>
           ))}
         </div>
       </motion.section>
@@ -154,11 +151,8 @@ export default function Personal() {
         <h3 className="mb-5 text-lg font-medium">Work Experience</h3>
         <div className="flex flex-col space-y-2">
             {WORK_EXPERIENCE.map((job) => (
-              <a
-                className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
-                href={job.link}
-                target="_blank"
-                rel="noopener noreferrer"
+              <div
+                className="relative cursor-pointer overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
                 key={job.id}
               >
                 <Spotlight
@@ -178,16 +172,20 @@ export default function Personal() {
                           {job.title}
                         </h4>
                         <p className="text-zinc-500 dark:text-zinc-400">
+                          {job.type}
+                        </p>
+                        <p className="text-zinc-500 dark:text-zinc-400">
                           {job.company}
                         </p>
+                        
                       </div>
                     </div>
                     <p className="text-sm text-zinc-600 dark:text-zinc-400">
-                      {job.start} - {job.end}
+                      {job.start === job.end ? job.start : `${job.start} - ${job.end}`}
                     </p>
                   </div>
                 </div>
-              </a>
+              </div>
             ))}
           </div>
       </motion.section>
@@ -202,7 +200,9 @@ export default function Personal() {
           {PROJECTS.map((project) => (
             <Link
               key={project.id}
-              href={project.slug}
+              href={project.link}
+              target="_blank" 
+              rel="noopener noreferrer"
               className="group space-y-3"
             >
               <div className="relative overflow-hidden rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
