@@ -12,13 +12,13 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://nim-fawn.vercel.app/'),
+  metadataBase: new URL('https://jakobg.tech'),
   alternates: {
     canonical: '/'
   },
   title: {
-    default: 'Personal portfolio website',
-    template: '%s | Nim'
+    default: 'Jakob Gokpinar',
+    template: '%s | Jakob Gokpinar'
   },
   description:  'This is a personal portfolio website built with Next.js 15, React 19 and Motion-Primitives, inspired from the Nim template',
 };

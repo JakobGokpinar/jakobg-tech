@@ -42,7 +42,7 @@ export const PROJECTS: Project[] = [
     description:
       'A modern chat application with Spring Boot, JWT authentication, and JavaFX desktop client',
     link: 'https://github.com/JakobGokpinar/Java-ChatApp',
-    image: '/projects/chatapp1.png',
+    image: '/projects/chatapp.png',
     slug: '/projects/chatapp',
     technologies: ['Java', 'JavaFX', 'Spring Boot', 'PostgreSQL', 'JWT', 'Maven', 'Docker'],
     id: 'project1',
@@ -50,7 +50,7 @@ export const PROJECTS: Project[] = [
   {
     name: 'Rego Marketplace',
     description: 'A marketplace web application for buying and selling second-hand items.',
-    link: 'https://github.com/JakobGokpinar/Rego-frontend',
+    link: 'https://rego.live',
     image: '/projects/shopping-bag.avif',
     slug: '/projects/rego',
     technologies: ['React', 'JavaScript', 'Node.js', 'Express.js', 'MongoDB', 'HTML/CSS', 'AWS'],    
@@ -69,6 +69,17 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     link: 'https://tinyurl.com/3h6z3uf2',
     logo: '/logos/uio.png',
     id: 'work1',
+  },
+  {
+    company: 'Easypick',
+    title: 'IT support',
+    type: 'Part time',
+    description: 'Responsible from the drift of the Easypick terminals',
+    start: '2025',
+    end: '2025',
+    link: 'https://www.easypick.app/no/',
+    logo: '/logos/easypick1.png',
+    id: 'work2',
   },
 ]
 

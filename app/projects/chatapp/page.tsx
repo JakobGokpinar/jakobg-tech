@@ -157,7 +157,7 @@ export default function ChatAppPage() {
       {/* Links */}
       <div className="mt-10 flex gap-4 border-t border-zinc-200 pt-6 dark:border-zinc-800">
         <a
-          href="https://github.com/YOUR_USERNAME/Java-ChatApp"
+          href="https://github.com/JakobGokpinar/Java-ChatApp"
           target="_blank"
           rel="noopener noreferrer"
           className="text-sm text-zinc-500 transition-colors hover:text-zinc-900 dark:hover:text-white"
