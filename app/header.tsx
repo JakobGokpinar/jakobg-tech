@@ -8,10 +8,10 @@ export function Header() {
       <img
         src="/jakob.jpg"
         alt="Jakob Gokpinar"
-        className="h-36 w-36 rounded-full object-cover"
+        className="h-40 w-40 rounded-full object-cover"
       />
       <div>
-        <Link href="/" className="font-medium text-black dark:text-white">
+        <Link href="/" className="text-xl font-medium text-black dark:text-white">
           Jakob Gokpinar
         </Link>
         <TextEffect

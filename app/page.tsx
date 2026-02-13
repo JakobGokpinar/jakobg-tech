@@ -94,9 +94,9 @@ export default function Personal() {
         transition={TRANSITION_SECTION}
       >
         <p className="text-zinc-600 dark:text-zinc-400">
-          CS student at the University of Oslo passionate about building
-          clean, modern applications. Focused on Java, Spring Boot, and
-          full-stack development.
+          CS student at the University of Oslo passionate about building clean, modern applications. 
+          Hands-on experience across the full stack — from Spring Boot and SQL to React solutions and 
+          cloud deployment. I enjoy turning ideas into products that actually work.
         </p>
       </motion.section>
 
